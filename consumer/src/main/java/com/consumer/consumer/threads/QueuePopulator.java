@@ -28,7 +28,9 @@ public class QueuePopulator extends Thread {
     @Override
     public void run(){
         try{
-            System.out.println("The Queue Populator instance of execution is by Thread:" +Thread.currentThread().getId());
+          //  System.out.println("The Queue Populator instance of execution is by Thread:" +Thread.currentThread().getId());
+
+            // 50 unprocessed records are fetched from RawData table. This value can be changed depending on load
             List<RawData> rawDataList = fetchUnprocessedRecordsFromRawData(50);
             System.out.println("Length of fetched rcrd "+rawDataList.size());
             populateGlobalQueue(rawDataList);
@@ -43,6 +45,7 @@ public class QueuePopulator extends Thread {
             return;
         try
         {
+            //if record not present in globalHashMap -> process for first time or process again
             for(RawData rawData : rawDataList){
                 if(!globalHashMap.containsKey((rawData.getId()))){
                     this.globalHashMap.put(rawData.getId(),"Processed");

@@ -60,6 +60,7 @@ public class ConsumerThread extends Thread{
         } catch(Exception e) {
             System.out.println(e);
             System.out.println("Removing " + rawData.getId() + " from HashMap by Thread:"+ Thread.currentThread().getId() +", so that it will get processed again");
+            //if there is a failure in processing a message remove it from HashMap for it to be reprocessed
             this.globalHashMap.remove((rawData.getId()));
             System.exit(0);
         }

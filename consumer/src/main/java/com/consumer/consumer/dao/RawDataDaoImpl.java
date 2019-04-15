@@ -27,39 +27,8 @@ public class RawDataDaoImpl extends JdbcDaoSupport implements RawDataDao  {
     @PostConstruct
     private void initialize() { setDataSource(dataSource); }
 
-//    @Override
-//    public void insertRecordToRawData(RawData rawData ){
-//        String sql = "INSERT INTO RawData " +
-//                "(id,target,data) VALUES (?,?,?)";
-//
-//        getJdbcTemplate().update(sql,new Object[]{rawData.getId(),rawData.getTarget(),rawData.getData()});
-//    }
-//
-//    @Override
-//    public void insertBulkRecordsToRawData(List<RawData> rawDataList) {
-//
-//        System.out.println("Start BulkInsert");
-//
-//        String sql = "INSERT INTO RawData " +
-//                "(id,target,data) VALUES (?,?,?)";
-//
-//        getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter() {
-//            @Override
-//            public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
-//                RawData rawData = rawDataList.get(i);
-//                preparedStatement.setInt(1,rawData.getId());
-//                preparedStatement.setString(2,rawData.getTarget());
-//                preparedStatement.setString(3,rawData.getData());
-//
-//            }
-//
-//            @Override
-//            public  int getBatchSize() {return rawDataList.size(); }
-//        });
-//
-//        System.out.println("End BulkInsert");
-//    }
 
+// update records with Processed = 'Y' back into RawData table after they have been processed successfully
     @Override
     public void updateRecordInRawData(RawData rawData) throws SQLException {
         try {

@@ -26,35 +26,6 @@ public class RawDataServiceImpl implements RawDataService {
     @Resource(name="fileProcessor")
     DataProcessor fileProcessor;
 
-//    @Override
-//    public void insertRecordToRawData(RawData rawData) {
-//        rawDataDao.insertRecordToRawData(rawData);
-//    }
-//
-//    @Override
-//    public void insertBulkRecordsToRawData(List<RawData> rawDatas) {
-//        rawDataDao.insertBulkRecordsToRawData(rawDatas);
-//    }
-//
-//    public List<RawData> generateRandomRecords(int noOfRecords) {
-//        System.out.println("Start generating random records");
-//        if(noOfRecords <= 0){
-//            return null;
-//        }
-//
-//        List<RawData> rawDataList = new ArrayList<RawData>();
-//
-//        for(int i=0; i< noOfRecords;i ++){
-//            int random = Utility.getRandom();
-//            int targetRandom = Utility.getRandomForTarget();
-//            RawData rawData = new RawData(Utility.getRandom(),
-//                    Target.values()[targetRandom -1].toString(),
-//                    "Randomtext_"+new Integer(random).toString());
-//            rawDataList.add(rawData);
-//        }
-//
-//        return  rawDataList;
-//    }
 
     @Override
     public void processAndUpdateRecord(RawData rawData) throws Exception {
@@ -68,7 +39,6 @@ public class RawDataServiceImpl implements RawDataService {
             switch(trimmedUpperTarget) {
                 case "DB":
                     dbProcessor.process(rawData);
-                    //counter++;
                     break;
                 case "FILE":
                     fileProcessor.process(rawData);

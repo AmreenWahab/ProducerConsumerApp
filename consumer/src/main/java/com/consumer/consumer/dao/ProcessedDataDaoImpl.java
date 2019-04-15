@@ -18,6 +18,7 @@ public class ProcessedDataDaoImpl extends JdbcDaoSupport implements ProcessedDat
     @PostConstruct
     private void initialize() { setDataSource(dataSource); }
 
+    // add processed messages whose target is db to ProcessedData table
     @Override
     public void insertRecordToProcessedData(ProcessedData processedData ){
         String sql = "INSERT INTO ProcessedData " +
