@@ -27,18 +27,11 @@ public class RawDataDaoImpl extends JdbcDaoSupport implements RawDataDao  {
     @PostConstruct
     private void initialize() { setDataSource(dataSource); }
 
-    @Override
-    public void insertRecordToRawData(RawData rawData ){
-        String sql = "INSERT INTO RawData " +
-                "(id,target,data) VALUES (?,?,?)";
-
-        getJdbcTemplate().update(sql,new Object[]{rawData.getId(),rawData.getTarget(),rawData.getData()});
-    }
 
     @Override
     public void insertBulkRecordsToRawData(List<RawData> rawDataList) {
 
-        System.out.println("Start BulkInsert");
+      //  System.out.println("Start BulkInsert");
 
         String sql = "INSERT INTO RawData " +
                 "(id,target,data) VALUES (?,?,?)";
@@ -57,64 +50,8 @@ public class RawDataDaoImpl extends JdbcDaoSupport implements RawDataDao  {
             public  int getBatchSize() {return rawDataList.size(); }
         });
 
-        System.out.println("End BulkInsert");
+      //  System.out.println("End BulkInsert");
     }
 
-    @Override
-    public void updateRecordInRawData(RawData rawData) {
-        try {
-            String sql = "UPDATE RawData SET Processed = 'Y' WHERE Id = ? ";
-            getJdbcTemplate().update(sql,rawData.getId());
-        }
-        catch (Exception e){
-            throw e;
-        }
-    }
-
-    @Override
-   public List<RawData> getRecordsFromRawData(int noofRecords){
-        return null;
-    }
-
-
-    @Override
-    public List<RawData> getUnprocessedRecordsFromRawData(int noOfRecords){
-       try{
-           String sql = "SELECT * FROM RawData WHERE PROCESSED='N' LIMIT " + noOfRecords;
-
-           List<Map <String,Object>> records = getJdbcTemplate().queryForList(sql);
-
-           List<RawData> rawDataList = new ArrayList<RawData>();
-
-           for(Map<String,Object> record : records) {
-               RawData rawData = new RawData();
-               rawData.setId((int) record.get("Id"));
-               rawData.setData((String) record.get("Data"));
-               rawData.setTarget((String) record.get("Target"));
-               rawData.setProcessed((String) record.get("Processed"));
-           }
-           return rawDataList;
-       } catch (Exception e) {
-           System.out.println("Exception while fetching from DB");
-       }
-       return null;
-    }
-
-    @Override
-    public RawData getRecordById(int id){
-        String sql = "SELECT * FROM RawData WHERE Id = ?";
-        return getJdbcTemplate().queryForObject(sql, new Object[]{id}, new RowMapper<RawData>() {
-            @Override
-            public RawData mapRow(ResultSet resultSet, int i) throws SQLException {
-                RawData rawData = new RawData();
-                rawData.setId(resultSet.getInt("Id"));
-                rawData.setData(resultSet.getString("Data"));
-                rawData.setTarget(resultSet.getString("Target"));
-                rawData.setProcessed(resultSet.getString("Processed"));
-                return rawData;
-            }
-        });
-
-    }
 
 }

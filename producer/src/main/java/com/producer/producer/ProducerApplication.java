@@ -22,8 +22,10 @@ public class ProducerApplication {
 
         Thread producerThread = new ProducerThread(rawDataService);
 
+        //create a scheduler thread
         ScheduledExecutorService scheduledProducer = Executors.newSingleThreadScheduledExecutor();
         System.out.println("START: "+System.currentTimeMillis());
+        // a fixed scheduler pushes performs production of data every 60 seconds
         scheduledProducer.scheduleAtFixedRate(producerThread,0,60, TimeUnit.SECONDS);
 
 	}

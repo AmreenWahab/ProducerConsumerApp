@@ -24,13 +24,14 @@ public class ProducerThread extends Thread{
     @Override
     public void run(){
         try{
-            System.out.println("The Produce rthread is executed by Thread: "+ Thread.currentThread().getId());
+            // the producer thread pushes random messages to the database
             pushRandomDataToDB();
         } catch(Exception e){
             System.out.println(" This instance of execution with id: "+ Thread.currentThread().getId() + "failed with Exception "+ e);
         }
     }
 
+    //generates random data and calls bulkinsert method for db insert
     private void pushRandomDataToDB(){
         List<RawData> recordsToInsertInDB = this.rawDataService.generateRandomRecords(Utility.getRandomForMaxRecords());
         System.out.println("No. of Random records generated to insert into DB "+ recordsToInsertInDB.size());
