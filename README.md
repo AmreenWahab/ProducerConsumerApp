@@ -24,7 +24,7 @@ The producer application must be run first to populate the RawData DB.
 
 Add the database connection details in the **ProducerConsumer/producer/src/main/resources/application.properties** file. 
 Update the connection URL, username, password and database in the above file.
-The ddl sql file is available in the **ProducerConsumer/producer/src/main/resources* folder.
+The ddl sql file is available in the **ProducerConsumer/producer/src/main/resources** folder.
 
 Run the java file present in **ProducerConsumer/producer/src/main/java/com/producer/producer/ProducerApplication.java** in the IDE of your choice.
 You can either stop the producer application before starting consumer application if enough data has been injected into the database or run it simultaneously along with consumer application.
