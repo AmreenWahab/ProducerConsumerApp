@@ -1,6 +1,6 @@
 # ProducerConsumerApp
 
-To build a simple standalone Java application that works as a consumer of messages in a database. The consumer is responsible for sending the message to difference targets like file, db etc. The consumer must ensure integrity of data and guarantee exactly-once processing of messages. Another Java application will act as a producer to inject data into database.
+This projects constains a simple standalone Java application that works as a consumer of messages in a database. The consumer is responsible for sending the message to difference targets like file, db etc. The consumer must ensure integrity of data and guarantee exactly-once processing of messages. Another Java application will act as a producer to inject data into database.
 
 ## Getting Started
 
