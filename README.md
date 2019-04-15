@@ -33,7 +33,10 @@ You can either stop the producer application before starting consumer applicatio
 
 Add the database connection details in the **ProducerConsumer/consumer/src/main/resources/application.properties** file. 
 Update the connection URL, username, password and database in the above file.
-The ddl sql file is present in **ProducerConsumer/consumer/src/main/resources** folder
+The ddl sql file for ProcessedData whose target is "DB" is present in **ProducerConsumer/consumer/src/main/resources** folder
 
 Run the java file present in **ProducerConsumer/consumer/src/main/java/com/producer/producer/ConsumerApplication.java** in the IDE of your choice.
 The folder of the output file for messages having target as "File" is created using my local folder location. Make sure to edit the folder path in the location **ProducerConsumer/consumer/src/main/java/com/consumer/consumer/service/FileProcessor.java** within your local machine
+
+
+
